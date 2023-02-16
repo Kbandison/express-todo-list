@@ -61,6 +61,7 @@ let newTasks = async (req, res) => {
     dateCreated,
     dateCompleted,
     status,
+    id: uuidv4(),
   });
 
   await listSchema.create(newTodo1, newTodo2);
