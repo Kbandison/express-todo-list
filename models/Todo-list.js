@@ -17,6 +17,6 @@ const todoListSchema = new mongoose.Schema({
   id: { type: String, default: uuidv4() },
 });
 
-const listSchema = mongoose.model("to-do-list", todoListSchema);
+const task = mongoose.model("to-do-list", todoListSchema);
 
-module.exports = listSchema;
+module.exports = task;

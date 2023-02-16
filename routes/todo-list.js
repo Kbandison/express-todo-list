@@ -10,16 +10,16 @@ router.get("/", (req, res) => {
 
 /*********************MAIN ROUTES*******************/
 
-// router.get("/", listController.getList);
+router.get("/allTasks", listController.getList);
 
 router.post("/new-task", listController.newTask);
 
-// router.post("/new-tasks", listController.newTasks);
+router.post("/new-tasks", listController.newTasks);
 
-// router.put("/update-task/:id", listController.updateTask);
+router.put("/update-task/:id", listController.updateTask);
 
-// router.delete("/delete-task/:id", listController.deleteTask);
+router.delete("/delete-task/:id", listController.deleteTask);
 
-// router.delete("/delete-tasks", listController.deleteTasks);
+router.delete("/delete-tasks/:name", listController.deleteTasks);
 
 module.exports = router;
