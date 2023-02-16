@@ -1,4 +1,5 @@
 const listSchema = require("../models/Todo-list");
+const { v4: uuidv4 } = require("uuid");
 
 let getList = async (req, res) => {
   let allTasks = await listSchema.find({});
@@ -15,6 +16,7 @@ let newTask = async (req, res) => {
   const dateCreated = new Date();
   const dateCompleted = new Date();
   const status = req.body.status;
+  const id = uuidv4();
 
   let newTodo = new listSchema({
     name,
@@ -23,6 +25,7 @@ let newTask = async (req, res) => {
     dateCreated,
     dateCompleted,
     status,
+    id,
   });
 
   let savedTask = await newTodo.save();
