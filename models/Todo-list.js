@@ -14,7 +14,7 @@ const todoListSchema = new mongoose.Schema({
     required: true,
     enum: ["incomplete", "complete", "deferred"],
   },
-  id: { type: String, default: uuidv4() },
+  id: { type: String, default: uuidv4 },
 });
 
 const task = mongoose.model("to-do-lists", todoListSchema);

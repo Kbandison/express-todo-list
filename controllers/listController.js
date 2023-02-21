@@ -2,73 +2,95 @@ const listSchema = require("../models/Todo-list");
 const { v4: uuidv4 } = require("uuid");
 
 let getList = async (req, res) => {
-  let allTasks = await listSchema.find({});
+  try {
+    let allTasks = await listSchema.find({});
 
-  res.json({
-    tasks: allTasks,
-  });
+    res.json({
+      tasks: allTasks,
+    });
+  } catch (e) {
+    console.log(typeof e);
+    console.log(e);
+    res.json({
+      error: e.toString(),
+    });
+  }
 };
 
 let newTask = async (req, res) => {
-  const name = req.body.name;
-  const description = req.body.description;
-  const completed = req.body.completed;
-  const dateCreated = new Date();
-  const dateCompleted = new Date();
-  const status = req.body.status;
-  const id = uuidv4();
+  try {
+    const name = req.body.name;
+    const description = req.body.description;
+    const completed = req.body.completed;
+    const dateCreated = new Date();
+    const dateCompleted = new Date();
+    const status = req.body.status;
+    const id = uuidv4();
 
-  let newTodo = new listSchema({
-    name,
-    description,
-    completed,
-    dateCreated,
-    dateCompleted,
-    status,
-    id,
-  });
+    let newTodo = new listSchema({
+      name,
+      description,
+      completed,
+      dateCreated,
+      dateCompleted,
+      status,
+      id,
+    });
 
-  let savedTask = await newTodo.save();
+    let savedTask = await newTodo.save();
 
-  res.json({
-    success: true,
-    newTask: savedTask,
-  });
+    res.json({
+      success: true,
+      newTask: savedTask,
+    });
+  } catch (e) {
+    console.log(typeof e);
+    console.log(e);
+    res.json({
+      error: e.toString(),
+    });
+  }
 };
 
 let newTasks = async (req, res) => {
-  const name = req.body.name;
-  const description = req.body.description;
-  const completed = req.body.completed;
-  const dateCreated = new Date();
-  const dateCompleted = new Date();
-  const status = req.body.status;
+  try {
+    const name = req.body.name;
+    const description = req.body.description;
+    const completed = req.body.completed;
+    const dateCreated = new Date();
+    const dateCompleted = new Date();
+    const status = req.body.status;
 
-  let newTodo1 = new listSchema({
-    name,
-    description,
-    completed,
-    dateCreated,
-    dateCompleted,
-    status,
-    id: uuidv4(),
-  });
+    let newTodo1 = new listSchema({
+      name,
+      description,
+      completed,
+      dateCreated,
+      dateCompleted,
+      status,
+    });
 
-  let newTodo2 = new listSchema({
-    name,
-    description,
-    completed,
-    dateCreated,
-    dateCompleted,
-    status,
-    id: uuidv4(),
-  });
+    let newTodo2 = new listSchema({
+      name,
+      description,
+      completed,
+      dateCreated,
+      dateCompleted,
+      status,
+    });
 
-  await listSchema.create(newTodo1, newTodo2);
+    await listSchema.create(newTodo1, newTodo2);
 
-  res.json({
-    success: true,
-  });
+    res.json({
+      success: true,
+    });
+  } catch (e) {
+    console.log(typeof e);
+    console.log(e);
+    res.json({
+      error: e.toString(),
+    });
+  }
 };
 
 let updateTask = async (req, res) => {
