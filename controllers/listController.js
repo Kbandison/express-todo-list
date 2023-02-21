@@ -54,32 +54,9 @@ let newTask = async (req, res) => {
 
 let newTasks = async (req, res) => {
   try {
-    const name = req.body.name;
-    const description = req.body.description;
-    const completed = req.body.completed;
-    const dateCreated = new Date();
-    const dateCompleted = new Date();
-    const status = req.body.status;
+    let tasks = req.body;
 
-    let newTodo1 = new listSchema({
-      name,
-      description,
-      completed,
-      dateCreated,
-      dateCompleted,
-      status,
-    });
-
-    let newTodo2 = new listSchema({
-      name,
-      description,
-      completed,
-      dateCreated,
-      dateCompleted,
-      status,
-    });
-
-    await listSchema.create(newTodo1, newTodo2);
+    await listSchema.create(tasks);
 
     res.json({
       success: true,
